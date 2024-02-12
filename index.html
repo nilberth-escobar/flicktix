@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,13 +12,63 @@
     </header>
 
     <main id="main-content">
-        <!-- Content will be dynamically added here using JavaScript -->
+        <!- Content will be dynamically added here using JavaScript ->
     </main>
 
     <footer>
         <p>&copy; 2024 Movie Ticket Booking App</p>
     </footer>
 
+    <script type="module" src="src/js/data.js" defer></script>
     
 </body>
+</html>
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Finder</title>
+    <script src="src/js/data.js"></script>
+</head>
+
+<body>
+    <h1>Choose a Movie Genre:</h1>
+    <select id="genreSelect">
+        <option value="action">action</option>
+        <option value="comedy">adventure</option>
+        <option value="drama">animation</option>
+        <option value="sci-fi">Sci-Fi</option>
+    </select>
+    <button id="fetchButton">Find Movies</button>
+    <br>
+    <div id="results"></div>
+
+    <script>
+        const fetchButton = document.getElementById('fetchButton');
+        const resultsDiv = document.getElementById('results');
+
+        fetchButton.addEventListener('click', async () => {
+            const genre = document.getElementById('genreSelect').value;
+            try {
+                const movies = await fetchMovies(genre);
+                let resultHtml = '';
+
+                for (const movie of movies) {
+                    resultHtml += `<h2>${movie.title}</h2>`;
+                    resultHtml += `<p>${movie.description}</p>`;
+                }
+
+                resultsDiv.innerHTML = resultHtml;
+            } catch (error) {
+                resultsDiv.innerHTML = `Error: ${error.message}`;
+            }
+        });
+
+    </script>
+</body>
+
 </html>
