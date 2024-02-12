@@ -25,7 +25,7 @@
 </html>
  -->
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -47,28 +47,35 @@
     <br>
     <div id="results"></div>
 
-    <script>
-        const fetchButton = document.getElementById('fetchButton');
-        const resultsDiv = document.getElementById('results');
-
-        fetchButton.addEventListener('click', async () => {
-            const genre = document.getElementById('genreSelect').value;
-            try {
-                const movies = await fetchMovies(genre);
-                let resultHtml = '';
-
-                for (const movie of movies) {
-                    resultHtml += `<h2>${movie.title}</h2>`;
-                    resultHtml += `<p>${movie.description}</p>`;
-                }
-
-                resultsDiv.innerHTML = resultHtml;
-            } catch (error) {
-                resultsDiv.innerHTML = `Error: ${error.message}`;
-            }
-        });
-
-    </script>
+    
 </body>
 
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlickTix</title>
+    <link rel="stylesheet" href="src/styles/styles.css"> </head>
+<body>
+    <div class="ticket-template">
+        <h1>FlickTix</h1>
+        <button id="fetchButton">Search</button>
+        <div class="genre-select">
+            <h2>Select Genre:</h2>
+            <select id="genreSelect">
+                <option value="action">Action</option>
+                <option value="comedy">Comedy</option>
+                <option value="drama">Drama</option>
+                <option value="fantasy">Fantasy</option>
+                </select>
+        </div>
+        <div id="results"></div>
+    </div>
+
+    <script src="src/js/data.js"></script>
+    <script src="src/js/byGenreTemp.js"></script>
+</body>
 </html>
