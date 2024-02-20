@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Ticket Booking</title>
+    <style>
+        /* Add your CSS styles here */
+        .seat {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .selected {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        .vip {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+
+        #cart {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Movie Ticket Booking</h2>
+
+    <div>
+        <label for="movie">Select Movie:</label>
+        <select id="movie">
+            <option value="movie1">Movie 1</option>
+            <option value="movie2">Movie 2</option>
+            <!-- Add more movies as needed -->
+        </select>
+    </div>
+
+    <div>
+        <label for="day">Select Day:</label>
+        <select id="day">
+            <option value="monday">Monday</option>
+            <option value="tuesday">Tuesday</option>
+            <!-- Add more days as needed -->
+        </select>
+
+        <label for="time">Select Time:</label>
+        <select id="time">
+            <option value="morning">Morning</option>
+            <option value="afternoon">Afternoon</option>
+            <option value="evening">Evening</option>
+            <!-- Add more times as needed -->
+        </select>
+    </div>
+
+    <div>
+        <h3>Available Seats:</h3>
+        <div id="seats-container"></div>
+    </div>
+
+    <div id="cart">
+        <h3>Shopping Cart</h3>
+        <ul id="cart-list"></ul>
+        <button onclick="processPayment()">Proceed to Payment</button>
+    </div>
+
+    <script>
+        // JavaScript logic
+
+        const seatsContainer = document.getElementById('seats-container');
+        const daySelect = document.getElementById('day');
+        const timeSelect = document.getElementById('time');
+        const movieSelect = document.getElementById('movie');
+        const cartList = document.getElementById('cart-list');
+
+        const rows = 5;
+        const seatsPerRow = 10;
+
+        // Initialize seats
+        const generateSeats = () => {
+            seatsContainer.innerHTML = '';
+
+            for (let row = 1; row <= rows; row++) {
+                for (let seat = 1; seat <= seatsPerRow; seat++) {
+                    const seatElement = document.createElement('div');
+                    seatElement.className = 'seat';
+                    seatElement.setAttribute('data-row', row);
+                    seatElement.setAttribute('data-seat', seat);
+
+                    seatsContainer.appendChild(seatElement);
+                }
+            }
+
+            // Add click event listener to seats
+            document.querySelectorAll('.seat').forEach(seat => {
+                seat.addEventListener('click', () => {
+                    toggleSeat(seat);
+                });
+            });
+        };
+
+        const toggleSeat = (seat) => {
+            seat.classList.toggle('selected');
+
+            // Check if the seat is VIP and toggle its class
+            const isVIP = isVipSeat(seat);
+            if (isVIP) {
+                seat.classList.toggle('vip');
+            }
+
+            // Save selected options to local storage
+            saveSelectionToLocalStorage();
+        };
+
+        const isVipSeat = (seat) => {
+            const row = seat.getAttribute('data-row');
+            const seatNumber = seat.getAttribute('data-seat');
+
+            // Example: Mark seats in row 1 as VIP
+            return row === '1';
+        };
+
+        const saveSelectionToLocalStorage = () => {
+            const selectedSeats = document.querySelectorAll('.seat.selected');
+            const selectedSeatsArray = Array.from(selectedSeats).map(seat => {
+                return {
+                    row: seat.getAttribute('data-row'),
+                    seat: seat.getAttribute('data-seat'),
+                    isVip: isVipSeat(seat)
+                };
+            });
+
+            const selectedOptions = {
+                movie: movieSelect.value,
+                day: daySelect.value,
+                time: timeSelect.value,
+                seats: selectedSeatsArray
+            };
+
+            localStorage.setItem('movieBookingSelection', JSON.stringify(selectedOptions));
+        };
+
+        const loadSelectionFromLocalStorage = () => {
+            const savedSelection = localStorage.getItem('movieBookingSelection');
+            if (savedSelection) {
+                const parsedSelection = JSON.parse(savedSelection);
+
+                // Set selected movie, day, and time
+                movieSelect.value = parsedSelection.movie;
+                daySelect.value = parsedSelection.day;
+                timeSelect.value = parsedSelection.time;
+
+                // Set selected seats
+                parsedSelection.seats.forEach(seat => {
+                    const seatElement = document.querySelector(`.seat[data-row="${seat.row}"][data-seat="${seat.seat}"]`);
+                    toggleSeat(seatElement);
+                });
+            }
+        };
+
+        const updateCartList = () => {
+            const selectedSeats = document.querySelectorAll('.seat.selected');
+            cartList.innerHTML = '';
+
+            selectedSeats.forEach(seat => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `Row ${seat.getAttribute('data-row')}, Seat ${seat.getAttribute('data-seat')}`;
+                cartList.appendChild(listItem);
+            });
+        };
+
+        const processPayment = () => {
+            // Simulate payment process
+            const selectedSeats = document.querySelectorAll('.seat.selected');
+            if (selectedSeats.length > 0) {
+                alert('Payment successful! Tickets booked.');
+                
+                // Clear selected seats and cart after successful payment
+                selectedSeats.forEach(seat => {
+                    seat.classList.remove('selected', 'vip');
+                });
+                cartList.innerHTML = '';
+
+                // Clear local storage
+                localStorage.removeItem('movieBookingSelection');
+            } else {
+                alert('Please select at least one seat before proceeding to payment.');
+            }
+        };
+
+        // Event listeners
+        movieSelect.addEventListener('change', () => {
+            // Update seats and save to local storage when movie changes
+            generateSeats();
+            saveSelectionToLocalStorage();
+        });
+
+        daySelect.addEventListener('change', () => {
+            // Update seats and save to local storage when day changes
+            generateSeats();
+            saveSelectionToLocalStorage();
+        });
+
+        timeSelect.addEventListener('change', () => {
+            // Update seats and save to local storage when time changes
+            generateSeats();
+            saveSelectionToLocalStorage();
+        });
+
+        // Initial setup
+        generateSeats();
+        loadSelectionFromLocalStorage();
+        updateCartList();
+    </script>
+
+</body>
+</html>
