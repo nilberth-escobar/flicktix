@@ -1,48 +1,37 @@
-const shoppingCart = document.querySelector('.shopping-cart .cart-items');
-let cartItems = [];
+/* function addToCart(id) {
+  console.log(id);
+  const item = movies20.find(movie => movie.id === id);
+  console.log(item);
+} */
 
-function addToCart(movieTitle, showtime) {
-  const item = { title: movieTitle, time: showtime, price: 10.00 }; // Assuming a fixed price for each ticket
-  cartItems.push(item);
+/* function addToCart(id, title, year, image) {
+  // Retrieve existing cart items from local storage
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-  // Update the shopping cart display
-  updateShoppingCart();
+  // Add the selected movie to the cart
+  cartItems.push({ id, title, year, image });
+
+  // Update local storage with the modified cart items
+  localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+  // Optionally, you can display a message or update the UI to indicate the addition to the cart
+  console.log('Added to cart:', { id, title, year, image });
+} */
+
+function addToCart(id, title, year, image) {
+  // Retrieve selected day and hour
+  const selectedDay = document.getElementById('day').value;
+  const selectedHour = document.getElementById('hour').value;
+
+  // Retrieve existing cart items from local storage
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+  // Add the selected movie with day and hour to the cart
+  cartItems.push({ id, title, year, image, day: selectedDay, hour: selectedHour });
+
+  // Update local storage with the modified cart items
+  localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+  // Optionally, you can display a message or update the UI to indicate the addition to the cart
+  console.log('Added to cart:', { id, title, year, image, day: selectedDay, hour: selectedHour });
 }
-
-function updateShoppingCart() {
-  shoppingCart.innerHTML = '';
-  let subtotal = 0.00;
-
-  cartItems.forEach(item => {
-    const listItem = document.createElement('li');
-    listItem.innerHTML = `${item.title} - ${item.time} <button onclick="removeFromCart(${cartItems.indexOf(item)})">Remove</button>`;
-    shoppingCart.appendChild(listItem);
-    subtotal += item.price;
-  });
-
-  // Update subtotal and total
-  document.querySelector('.shopping-cart .subtotal').textContent = subtotal.toFixed(2);
-  document.querySelector('.shopping-cart .total').textContent = subtotal.toFixed(2);
-}
-
-function removeFromCart(index) {
-    cartItems.splice(index, 1);
-    updateShoppingCart();
-}
-
-function selectMovie(checkbox, title) {
-    if (checkbox.checked) {
-      addToCart(title, 'Default Time'); // You can replace 'Default Time' with the actual default showtime
-    } else {
-      removeFromCartByTitle(title);
-    }
-  }
-  
-  function removeFromCartByTitle(title) {
-    const index = cartItems.findIndex(item => item.title === title);
-    if (index !== -1) {
-      cartItems.splice(index, 1);
-      updateShoppingCart();
-    }
-  }
-  

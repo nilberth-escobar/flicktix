@@ -1,3 +1,4 @@
+// showingData.js:
 const url = 'https://moviesverse1.p.rapidapi.com/most-popular-movies';
 const options = {
   method: 'GET',
@@ -7,7 +8,9 @@ const options = {
   },
 };
 
-async function fetchAndPopulateMovies() {
+let movies20 = [];
+async function fetchAndPopulateMovies(movies20) {
+  
   try {
     const response = await fetch(url, options);
     const data = await response.json();
@@ -23,7 +26,7 @@ async function fetchAndPopulateMovies() {
     const movies20 = moviesWithIds.slice(0, 20);
 
     console.log(movies20);
-
+    
     const nowShowingList = document.querySelector('.now-showing .movie-list');
     movies20.forEach((movie) => {
       const listItem = document.createElement('li');
@@ -31,11 +34,25 @@ async function fetchAndPopulateMovies() {
       listItem.innerHTML = cardHtml; // Use innerHTML to set card HTML
       nowShowingList.appendChild(listItem);
     });
+    
   } catch (error) {
     console.error('Error fetching movies:', error);
     // Handle the error gracefully, e.g., display an error message to the user
   }
+  
 }
-
-// Call the function to fetch and populate movies
 fetchAndPopulateMovies();
+
+/* function addToCart(id, title, year, image) {
+  // Retrieve existing cart items from local storage
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+  // Add the selected movie to the cart
+  cartItems.push({ id, title, year, image });
+
+  // Update local storage with the modified cart items
+  localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+  // Optionally, you can display a message or update the UI to indicate the addition to the cart
+  console.log('Added to cart:', { id, title, year, image });
+} */
