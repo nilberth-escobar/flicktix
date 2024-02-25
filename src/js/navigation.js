@@ -13,8 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="navigation-items" id="navigation-items">
                     <a href=""><i class="bi bi-person-lines-fill"></i>
                     </a>
-                    <a href=""><i class="bi bi-person"></i></a>
-                    <a href=""><i class="bi bi-cart2"></i></a>
+                    <a href="src/formAuth.html"><i class="bi bi-person"></i></a>
+                    <a href="#cartDiv"><i class="bi bi-cart2" onclick="toggleCartVisibility()"></i></a>
+                    <span id="cartCount">0</span>
                 </div>
                 <div class="hamburger">
                     <span id="openHam">&#9776;</span>

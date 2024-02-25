@@ -1,4 +1,4 @@
-// showingData.js:
+
 const url = 'https://moviesverse1.p.rapidapi.com/most-popular-movies';
 const options = {
   method: 'GET',
@@ -20,6 +20,7 @@ async function fetchAndPopulateMovies(movies20) {
     const moviesWithIds = nowShowingMovies.map((movie, index) => ({
       ...movie,
       id: index + 1,
+      price: Math.floor(Math.random() * 10) + 25,
     }));
 
     // Truncate and display movies
@@ -42,17 +43,3 @@ async function fetchAndPopulateMovies(movies20) {
   
 }
 fetchAndPopulateMovies();
-
-/* function addToCart(id, title, year, image) {
-  // Retrieve existing cart items from local storage
-  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-
-  // Add the selected movie to the cart
-  cartItems.push({ id, title, year, image });
-
-  // Update local storage with the modified cart items
-  localStorage.setItem('cartItems', JSON.stringify(cartItems));
-
-  // Optionally, you can display a message or update the UI to indicate the addition to the cart
-  console.log('Added to cart:', { id, title, year, image });
-} */

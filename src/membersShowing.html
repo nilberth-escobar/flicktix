@@ -4,8 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="src/styles/showingComing.css">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/cart.css">
+    <link rel="stylesheet" href="styles/showingComing.css">
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>FlickTix</title>
 </head>
 
@@ -23,23 +26,16 @@
         </div>
     </div>
 
-    <!-- Add a container for the shopping cart -->
-    <!-- <div class="shopping-cart">
-        <h2>Shopping Cart</h2>
-        <ul class="cart-items"></ul>
-        <p>Subtotal: $<span class="subtotal">0.00</span></p>
-        <p>Total: $<span class="total">0.00</span></p>
-        <button onclick="goToCheckout()">Go to Checkout</button>
-    </div>  --> 
+    <h2 class="shopping-cart">Shopping Cart</h2>
 
-    <!-- Add this to your HTML -->
-    
-  
-
-    <script src="src/js/showingData.js"></script>
-    <script src="src/js/showingTemp.js"></script>
-    <script src="src/js/upcomingData.js"></script>
-    <script src="src/js/shoppingCart.js"></script>
+    <div id="cartDiv" class="cart"></div>
+   
+    <script src="js/navigation.js"></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script src="js/membersShowing.js"></script>
+    <script src="js/showingData.js"></script>
+    <script src="js/upcomingData.js"></script>
+    <script src="js/shoppingCart.js"></script>
 </body>
 
 </html> 

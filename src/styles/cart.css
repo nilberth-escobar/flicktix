@@ -1,0 +1,42 @@
+/* Add your existing styles here */
+
+.cart-items {
+    border: 1px dashed grey;
+    margin-top: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.cart-items img {
+    max-width: 80px;
+}
+
+.cart-items .cart_item_name {
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+.cart-items .cart_item_price {
+    font-style: oblique;
+    font-family: cursive;
+    margin-left: auto;
+}
+
+.cart-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px dashed grey;
+}
+
+.cart-footer button {
+    cursor: pointer;
+}
+
+.p-2{
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-around;
+}
