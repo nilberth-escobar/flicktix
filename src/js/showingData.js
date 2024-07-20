@@ -1,11 +1,20 @@
 
-const url = 'https://moviesverse1.p.rapidapi.com/most-popular-movies';
+/* const url = 'https://moviesverse1.p.rapidapi.com/most-popular-movies';
 const options = {
   method: 'GET',
   headers: {
     'X-RapidAPI-Key': '5b32c1237bmsh2b9b749420f648ep1f2e87jsnb3546f127a5b',
     'X-RapidAPI-Host': 'moviesverse1.p.rapidapi.com',
   },
+}; */
+
+const url = 'https://moviesverse1.p.rapidapi.com/top-box-office-movies';
+const options = {
+	method: 'GET',
+	headers: {
+		'x-rapidapi-key': '5b32c1237bmsh2b9b749420f648ep1f2e87jsnb3546f127a5b',
+		'x-rapidapi-host': 'moviesverse1.p.rapidapi.com'
+	}
 };
 
 let movies20 = [];

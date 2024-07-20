@@ -29,8 +29,7 @@ function showingCardTemplate(movie) {
         <h3>${movie.title}</h3>
         <p>${movie.year}</p>
         <ul class="movie-details">
-          
-          ${movie.rating ? `<li>Rating: ${movie.rating}</li>` : ''}
+        ${movie.rating ? `<li>Rating: ${movie.rating}</li>` : ''}
         </ul>
         
       </div>
