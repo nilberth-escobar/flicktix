@@ -1,87 +1,122 @@
-/* .ticket-template {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin: 0 auto;
-    width: 400px;
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 5px;
+/* Basic Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.ticket-template h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.ticket-template button {
-    background-color: #f00;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.ticket-template .now-showing,
-.ticket-template .coming-soon {
-    margin-top: 20px;
-}
-
-.ticket-template .now-showing h2,
-.ticket-template .coming-soon h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.ticket-template .movie-list {
-    list-style: none;
+/* Container for the cards */
+.movie-list {
+    list-style-type: none;
     padding: 0;
     margin: 0;
+    display: grid;
+    gap: 20px;
+    padding: 20px;
 }
 
-.ticket-template .movie-list li {
-    margin-bottom: 10px;
+/* Movie card styles */
+.movie-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
 }
 
-.ticket-template .movie-list li a {
-    text-decoration: none;
-    color: #000;
+.movie-card:hover {
+    transform: scale(1.05);
 }
 
-.movie-list li{
-    list-style: none;
+.movie-card img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
-.movie-list .movie-card{
-    margin-top: 19px;
-    border: #f00 solid 1px;
+.movie-info {
+    padding: 15px;
+    background-color: #fff;
 }
 
-.movie-list .movie-card img{
-    margin-top: 19px;
-    border: #f00 solid 1px;
+.movie-info h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.movie-info p {
+    margin: 5px 0;
+    color: #777;
+}
+
+.movie-details {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
 }
 
 .movie-details li {
-    margin-right: auto;
+    color: #555;
 }
 
-body{
-    background-color: #ccc;
-} */
-
-.ticket-template {
+.showing-options {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin: 0 auto;
-    width: 400px;
-    border: 1px solid #ddd;
-    padding: 20px;
+    margin: 10px 0;
+}
+
+.showing-options label {
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+.showing-options select {
+    padding: 5px;
+    border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+.add-to-cart {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: #ff6600;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.add-to-cart img {
+    margin-right: 10px;
+    width: 10%;
+}
+
+.add-to-cart:hover {
+    background-color: #ff8533;
+}
+
+/* Desktop View (3 columns) */
+@media (min-width: 1024px) {
+    .movie-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Tablet View (2 columns) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .movie-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile View (1 column) */
+@media (max-width: 767px) {
+    .movie-list {
+        grid-template-columns: 1fr;
+    }
 }

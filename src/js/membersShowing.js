@@ -32,7 +32,7 @@ function showingCardTemplate(movie) {
             </select>
           </div>
           <div class="add-to-cart" onclick="addToCart(${movie.id}, '${movie.title}', '${movie.year}', '${movie.image || 'placeholder.jpg'}', ${movie.price})">
-            <img src="images/add-to-cart.png" alt="add to cart">
+            <img src="./src/images/add-to-cart.png" alt="add to cart">
             Add to cart
           </div>
         </div>
