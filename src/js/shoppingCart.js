@@ -1,4 +1,4 @@
-
+/* 
 function addToCart(id, title, year, image, price) {
   // Retrieve selected day and hour
   const selectedDay = document.getElementById('day').value;
@@ -112,4 +112,72 @@ function updateCartDisplay() {
 
 
 // Initial cart update on page load
+updateCartDisplay(); */
+
+function addToCart(id, title, year, image, price) {
+  const selectedDay = document.getElementById('day').value;
+  const selectedHour = document.getElementById('hour').value;
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  
+  const existingItemIndex = cartItems.findIndex(item => item.id === id && item.day === selectedDay && item.hour === selectedHour);
+  if (existingItemIndex !== -1) {
+      cartItems[existingItemIndex].quantity++;
+  } else {
+      cartItems.push({ id, title, year, image, price, day: selectedDay, hour: selectedHour, quantity: 1 });
+  }
+  
+  localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  updateCartDisplay();
+}
+
+function updateCartDisplay() {
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  const cartItemsContainer = document.getElementById('cart-items');
+  cartItemsContainer.innerHTML = '';
+
+  let total = 0;
+  let itemCount = 0;
+
+  cartItems.forEach((item, index) => {
+      total += item.price * item.quantity;
+      itemCount += item.quantity;
+
+      const cartItem = document.createElement('div');
+      cartItem.innerHTML = `
+          <p>
+              <a href="#">${item.title} (${item.year}) - ${item.day} at ${item.hour}</a>
+              <span class="price">$${(item.price * item.quantity).toFixed(2)}</span>
+              <button class="increment-btn" onclick="changeQuantity(${index}, 1)">+</button>
+              <span>${item.quantity}</span>
+              <button class="decrement-btn" onclick="changeQuantity(${index}, -1)">-</button>
+              <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+          </p>
+      `;
+      cartItemsContainer.appendChild(cartItem);
+  });
+
+  document.getElementById('total-price').textContent = `$${total.toFixed(2)}`;
+  document.getElementById('item-count').textContent = itemCount;
+}
+
+function removeFromCart(index) {
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  cartItems.splice(index, 1);
+  localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  updateCartDisplay();
+}
+
+function changeQuantity(index, change) {
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  cartItems[index].quantity += change;
+
+  if (cartItems[index].quantity <= 0) {
+      cartItems.splice(index, 1);
+  }
+
+  localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  updateCartDisplay();
+}
+
+// Initialize the cart display on page load
 updateCartDisplay();

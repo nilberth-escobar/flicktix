@@ -7,14 +7,14 @@ document.addEventListener("DOMContentLoaded", function () {
             <nav>
                 <div class="logo-container">
                     <a href="./index.html"> FlickTix
-                        <img src="/src/images/logo.jpg" alt="Flicktix logo" width="60px">
+                        <img src="src/images/logo.jpg" alt="Flicktix logo" width="60px">
                     </a> 
                 </div>
                 <div class="navigation-items" id="navigation-items">
                     <a href=""><i class="bi bi-person-lines-fill"></i>
                     </a>
-                    <a href="src/formAuth.html"><i class="bi bi-person"></i></a>
-                    <a href="#cartDiv"><i class="bi bi-cart2" onclick="toggleCartVisibility()"></i></a>
+                    <a href="src/register-login.html"><i class="bi bi-person"></i></a>
+                    <a href="payment.html"><i class="bi bi-cart2" onclick="toggleCartVisibility()"></i></a>
                     <span id="cartCount">0</span>
                 </div>
                 <div class="hamburger">
