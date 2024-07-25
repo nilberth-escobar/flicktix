@@ -145,7 +145,7 @@ function updateCartDisplay() {
       const cartItem = document.createElement('div');
       cartItem.innerHTML = `
           <p>
-              <a href="#">${item.title} (${item.year}) - ${item.day} at ${item.hour}</a>
+            <a class="name">${item.title}  - ${item.day} at ${item.hour} pm</a>
               <span class="price">$${(item.price * item.quantity).toFixed(2)}</span>
               <button class="increment-btn" onclick="changeQuantity(${index}, 1)">+</button>
               <span>${item.quantity}</span>

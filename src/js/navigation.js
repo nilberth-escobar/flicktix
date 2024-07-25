@@ -6,12 +6,12 @@ document.addEventListener("DOMContentLoaded", function () {
         <header class="navigation-header">
             <nav>
                 <div class="logo-container">
-                    <a href="./index.html"> FlickTix
+                    <a href="index.html"> FlickTix
                         <img src="src/images/logo.jpg" alt="Flicktix logo" width="60px">
                     </a> 
                 </div>
                 <div class="navigation-items" id="navigation-items">
-                    <a href=""><i class="bi bi-person-lines-fill"></i>
+                    <a href="index.html"><i class="bi bi-person-lines-fill"></i>
                     </a>
                     <a href="src/register-login.html"><i class="bi bi-person"></i></a>
                     <a href="payment.html"><i class="bi bi-cart2" onclick="toggleCartVisibility()"></i></a>

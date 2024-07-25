@@ -26,7 +26,7 @@ function showingCardTemplate(movie) {
         <img src="${movie.image || 'placeholder.jpg'}" alt="Image of ${movie.title}" />
       </a>
       <div class="movie-info">
-        <h3>${movie.title}</h3>
+        <h3>${movie}</h3>
         <p>${movie.year}</p>
         <ul class="movie-details">
         ${movie.rating ? `<li>Rating: ${movie.rating}</li>` : ''}
